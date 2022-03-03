@@ -15,6 +15,11 @@ public static class scr_Models
 
         public bool ViewXInverted;
         public bool ViewYInverted;
+
+        [Header("Movement")]
+        public float WalkingForwardSpeed;
+        public float WalkingStrafeSpeed;
+        public float WalkingBackwardsSpeed;
     }
 
     #endregion

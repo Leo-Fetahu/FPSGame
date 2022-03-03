@@ -449,8 +449,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input_Movement: {x: 0, y: 0}
   input_View: {x: 0, y: 0}
-  newCameraRotation: {x: 0, y: 0, z: 0}
-  cameraHolder: {fileID: 0}
+  cameraHolder: {fileID: 1253228429}
+  playerSettings:
+    ViewXSensitivity: 10
+    ViewYSensitivity: 10
+    ViewXInverted: 0
+    ViewYInverted: 0
+    WalkingForwardSpeed: 4
+    WalkingStrafeSpeed: 3
+    WalkingBackwardsSpeed: 2
+  viewClampYMin: -70
+  viewClampYMax: 80
 --- !u!143 &284444578
 CharacterController:
   m_ObjectHideFlags: 0
@@ -933,7 +942,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh27720
+  m_Name: pb_Mesh27724
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
