@@ -20,6 +20,10 @@ public static class scr_Models
         public float WalkingForwardSpeed;
         public float WalkingStrafeSpeed;
         public float WalkingBackwardsSpeed;
+
+        [Header("Jumping")]
+        public float JumpingHeight;
+        public float JumpingFalloff;
     }
 
     #endregion
