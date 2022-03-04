@@ -46,6 +46,10 @@ public class CharacterC : MonoBehaviour
 
     private bool isSprinting;
 
+    private Vector3 newMovementSpeed;
+    private Vector3 newMovementSpeedVelocity;
+
+
     private void Awake()
     {
         defaultInput = new Defaultinput();
@@ -56,6 +60,7 @@ public class CharacterC : MonoBehaviour
         defaultInput.Character.Crouch.performed += e => Crouch();
         defaultInput.Character.Prone.performed += e => Prone();
         defaultInput.Character.Sprint.performed += e => ToggleSprint();
+        defaultInput.Character.SprintReleased.performed += e => StopSprint();
 
         defaultInput.Enable();
 
@@ -102,8 +107,8 @@ public class CharacterC : MonoBehaviour
             horizontalSpeed = playerSettings.RunningStrafeSpeed;
         }
 
-        var newMovementSpeed = new Vector3(horizontalSpeed * input_Movement.x * Time.deltaTime, 0, verticleSpeed * input_Movement.y * Time.deltaTime);
-        newMovementSpeed = transform.TransformDirection(newMovementSpeed);
+        newMovementSpeed = Vector3.SmoothDamp(newMovementSpeed, new Vector3(horizontalSpeed * input_Movement.x * Time.deltaTime, 0, verticleSpeed * input_Movement.y * Time.deltaTime), ref newMovementSpeedVelocity, playerSettings.MovementSmoothing);
+        var movementSpeed = transform.TransformDirection(newMovementSpeed);
 
         if (playerGravity > gravityMin)
         {
@@ -115,10 +120,10 @@ public class CharacterC : MonoBehaviour
             playerGravity = -0.1f;
         }
 
-        newMovementSpeed.y += playerGravity;
-        newMovementSpeed += jumpingForce * Time.deltaTime;
+        movementSpeed.y += playerGravity;
+        movementSpeed += jumpingForce * Time.deltaTime;
 
-        characterController.Move(newMovementSpeed);
+        characterController.Move(movementSpeed);
     }
 
     private void CalculateJump()
@@ -207,5 +212,13 @@ public class CharacterC : MonoBehaviour
         }
 
         isSprinting = !isSprinting;
+    }
+
+    private void StopSprint()
+    {
+        if (playerSettings.SprintingHold)
+        {
+            isSprinting = false;
+        }
     }
 }

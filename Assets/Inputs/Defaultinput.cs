@@ -65,6 +65,14 @@ public class @Defaultinput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""SprintReleased"",
+                    ""type"": ""Button"",
+                    ""id"": ""a3d95fac-c084-432d-b0e7-b383c80fcf24"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -188,6 +196,17 @@ public class @Defaultinput : IInputActionCollection, IDisposable
                     ""action"": ""Sprint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3a6f4707-e8bd-4c57-9f87-cf07d13bc42b"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SprintReleased"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -202,6 +221,7 @@ public class @Defaultinput : IInputActionCollection, IDisposable
         m_Character_Crouch = m_Character.FindAction("Crouch", throwIfNotFound: true);
         m_Character_Prone = m_Character.FindAction("Prone", throwIfNotFound: true);
         m_Character_Sprint = m_Character.FindAction("Sprint", throwIfNotFound: true);
+        m_Character_SprintReleased = m_Character.FindAction("SprintReleased", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -257,6 +277,7 @@ public class @Defaultinput : IInputActionCollection, IDisposable
     private readonly InputAction m_Character_Crouch;
     private readonly InputAction m_Character_Prone;
     private readonly InputAction m_Character_Sprint;
+    private readonly InputAction m_Character_SprintReleased;
     public struct CharacterActions
     {
         private @Defaultinput m_Wrapper;
@@ -267,6 +288,7 @@ public class @Defaultinput : IInputActionCollection, IDisposable
         public InputAction @Crouch => m_Wrapper.m_Character_Crouch;
         public InputAction @Prone => m_Wrapper.m_Character_Prone;
         public InputAction @Sprint => m_Wrapper.m_Character_Sprint;
+        public InputAction @SprintReleased => m_Wrapper.m_Character_SprintReleased;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -294,6 +316,9 @@ public class @Defaultinput : IInputActionCollection, IDisposable
                 @Sprint.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnSprint;
                 @Sprint.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnSprint;
                 @Sprint.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnSprint;
+                @SprintReleased.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnSprintReleased;
+                @SprintReleased.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnSprintReleased;
+                @SprintReleased.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnSprintReleased;
             }
             m_Wrapper.m_CharacterActionsCallbackInterface = instance;
             if (instance != null)
@@ -316,6 +341,9 @@ public class @Defaultinput : IInputActionCollection, IDisposable
                 @Sprint.started += instance.OnSprint;
                 @Sprint.performed += instance.OnSprint;
                 @Sprint.canceled += instance.OnSprint;
+                @SprintReleased.started += instance.OnSprintReleased;
+                @SprintReleased.performed += instance.OnSprintReleased;
+                @SprintReleased.canceled += instance.OnSprintReleased;
             }
         }
     }
@@ -328,5 +356,6 @@ public class @Defaultinput : IInputActionCollection, IDisposable
         void OnCrouch(InputAction.CallbackContext context);
         void OnProne(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
+        void OnSprintReleased(InputAction.CallbackContext context);
     }
 }
