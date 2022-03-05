@@ -49,7 +49,6 @@ public class CharacterC : MonoBehaviour
     private Vector3 newMovementSpeed;
     private Vector3 newMovementSpeedVelocity;
 
-
     private void Awake()
     {
         defaultInput = new Defaultinput();
@@ -107,7 +106,27 @@ public class CharacterC : MonoBehaviour
             horizontalSpeed = playerSettings.RunningStrafeSpeed;
         }
 
-        newMovementSpeed = Vector3.SmoothDamp(newMovementSpeed, new Vector3(horizontalSpeed * input_Movement.x * Time.deltaTime, 0, verticleSpeed * input_Movement.y * Time.deltaTime), ref newMovementSpeedVelocity, playerSettings.MovementSmoothing);
+        if (!characterController.isGrounded)
+        {
+            playerSettings.SpeedEffector = playerSettings.FallingSpeedEffector;
+        }
+        else if (playerStance == PlayerStance.Crouch)
+        {
+            playerSettings.SpeedEffector = playerSettings.CrouchSpeedEffector;
+        }
+        else if (playerStance == PlayerStance.Prone)
+        {
+            playerSettings.SpeedEffector = playerSettings.ProneSpeedEffector;
+        }
+        else
+        {
+            playerSettings.SpeedEffector = 1;
+        }
+
+        verticleSpeed *= playerSettings.SpeedEffector;
+        horizontalSpeed *= playerSettings.SpeedEffector;
+
+        newMovementSpeed = Vector3.SmoothDamp(newMovementSpeed, new Vector3(horizontalSpeed * input_Movement.x * Time.deltaTime, 0, verticleSpeed * input_Movement.y * Time.deltaTime), ref newMovementSpeedVelocity, characterController.isGrounded ? playerSettings.MovementSmoothing : playerSettings.FallingSmoothing);
         var movementSpeed = transform.TransformDirection(newMovementSpeed);
 
         if (playerGravity > gravityMin)
@@ -160,6 +179,11 @@ public class CharacterC : MonoBehaviour
 
         if (playerStance == PlayerStance.Crouch)
         {
+            if (StanceCheck(playerStandStance.StanceCollider.height))
+            {
+                return;
+            }
+
             playerStance = PlayerStance.Stand;
             return;
         }
