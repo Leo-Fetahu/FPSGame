@@ -8,7 +8,8 @@ public class CharacterC : MonoBehaviour
     private CharacterController characterController;
     private Defaultinput defaultInput;
     private Vector2 input_Movement;
-    private Vector2 input_View;
+    [HideInInspector]
+    public Vector2 input_View;
     
     private Vector3 newCameraRotation;
     private Vector3 newCharacterRotation;
@@ -49,6 +50,9 @@ public class CharacterC : MonoBehaviour
     private Vector3 newMovementSpeed;
     private Vector3 newMovementSpeedVelocity;
 
+    [Header("Weapon")]
+    public WeaponC currentWeapon;
+
     private void Awake()
     {
         defaultInput = new Defaultinput();
@@ -69,6 +73,11 @@ public class CharacterC : MonoBehaviour
         characterController = GetComponent<CharacterController>();
 
         cameraHeight = cameraHolder.localPosition.y;
+
+        if (currentWeapon)
+        {
+            currentWeapon.Initialise(this);
+        }
     }
 
     private void Update()
