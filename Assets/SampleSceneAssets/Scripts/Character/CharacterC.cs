@@ -54,6 +54,8 @@ public class CharacterC : MonoBehaviour
     [Header("Weapon")]
     public WeaponC currentWeapon;
 
+    public float weaponAnimationSpeed;
+
     private void Awake()
     {
         defaultInput = new Defaultinput();
@@ -131,6 +133,13 @@ public class CharacterC : MonoBehaviour
         else
         {
             playerSettings.SpeedEffector = 1;
+        }
+        
+        weaponAnimationSpeed = characterController.velocity.magnitude / (playerSettings.WalkingForwardSpeed * playerSettings.SpeedEffector);
+
+        if (weaponAnimationSpeed > 1)
+        {
+            weaponAnimationSpeed = 1;
         }
 
         verticleSpeed *= playerSettings.SpeedEffector;

@@ -5,6 +5,9 @@ public class WeaponC : MonoBehaviour
 {
     private CharacterC characterController;
 
+    [Header("References")]
+    public Animator weaponAnimator;
+
     [Header("Settings")]
     public WeaponSettingsModel settings;
 
@@ -16,13 +19,11 @@ public class WeaponC : MonoBehaviour
     Vector3 targetWeaponRotation;
     Vector3 targetWeaponRotationVelocity;
 
-
     Vector3 newWeaponMovementRotation;
     Vector3 newWeaponMovementRotationVelocity;
 
     Vector3 targetWeaponMovementRotation;
     Vector3 targetWeaponMovementRotationVelocity;
-
 
     private void Start()
     {
@@ -41,6 +42,8 @@ public class WeaponC : MonoBehaviour
         {
             return;
         }
+
+        weaponAnimator.speed = characterController.weaponAnimationSpeed;
 
         targetWeaponRotation.y += settings.SwayAmount * (settings.SwayXInverted ? -characterController.input_View.x : characterController.input_View.x) * Time.deltaTime;
         targetWeaponRotation.x += settings.SwayAmount * (settings.SwayYInverted ? characterController.input_View.y : -characterController.input_View.y) * Time.deltaTime;
