@@ -428,6 +428,7 @@ MonoBehaviour:
   playerSettings:
     ViewXSensitivity: 20
     ViewYSensitivity: 20
+    AimingSensitivityEffector: 0.5
     ViewXInverted: 0
     ViewYInverted: 0
     SprintingHold: 0
@@ -444,6 +445,7 @@ MonoBehaviour:
     CrouchSpeedEffector: 0.6
     ProneSpeedEffector: 0.2
     FallingSpeedEffector: 0.4
+    AimingSpeedEffector: 0.5
     isGroundedRadius: 0.1
     isFallingSpeed: 1
   viewClampYMin: -70
@@ -650,7 +652,7 @@ MonoBehaviour:
   weaponSwayObject: {fileID: 763609412}
   swayAmountA: 1
   swayAmountB: 2
-  swayScale: 400
+  swayScale: 2500
   swayLerpSpeed: 14
   sightTarget: {fileID: 1612634204}
   sightOffset: 0.16
