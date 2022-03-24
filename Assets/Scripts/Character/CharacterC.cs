@@ -74,6 +74,21 @@ public class CharacterC : MonoBehaviour
     [Header("Aiming In")]
     public bool isAimingIn;
 
+
+    [Header("Health")]
+
+    public int maxHealth = 100;
+    public int currentHealth;
+
+    public HealthBar healthBar;
+
+    void Start()
+    {
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+    }
+
+
     #region - Awake -
 
     private void Awake()

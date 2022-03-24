@@ -10,6 +10,7 @@ public class Gun : MonoBehaviour
     public float range = 100f;
     public float fireRate = 15f;
     public float impactForce = 30f;
+    public int damageAmount = 20;
 
     public Camera fpscamera;
     public ParticleSystem muzzleflash;
@@ -48,6 +49,13 @@ public class Gun : MonoBehaviour
             if (hit.rigidbody != null)
             {
                 hit.rigidbody.AddForce(-hit.normal * impactForce);
+            }
+
+            EnemyDamage e = hit.transform.GetComponent<EnemyDamage>();
+            if (e != null)
+            {
+                e.TakeDamage(damageAmount);
+                return;
             }
 
             GameObject impactGO = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
