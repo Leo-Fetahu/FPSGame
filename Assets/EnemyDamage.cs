@@ -27,6 +27,7 @@ public class EnemyDamage : MonoBehaviour
         else
         {
             animator.SetTrigger("Damage");
+            
         }
 
     }

@@ -7,13 +7,17 @@ public class ProjectileBehavior : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.gameObject.tag.Equals ("Player"))
+        if (collision.collider.gameObject.tag.Equals("Player"))
         {
             CharacterH characterH = collision.collider.GetComponent<CharacterH>();
 
             characterH.TakeDamage(30);
 
-            Destroy(gameObject);
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                Debug.Log("Player Hit");
+            }
+
         }
         else
         {

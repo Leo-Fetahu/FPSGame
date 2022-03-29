@@ -8,7 +8,8 @@ public class CharacterH : MonoBehaviour
     public float health = 100f;
     public GameObject DeathUI;
     public GameObject HealthUI;
-    public GameObject player;
+    public GameObject Player;
+
     public void TakeDamage(float amount)
     {
         health -= amount;
@@ -26,6 +27,6 @@ public class CharacterH : MonoBehaviour
     {
         DeathUI.SetActive(true);
         HealthUI.SetActive(false);
-        player.SetActive(false);
+        Player.SetActive(false);
     }
 }
