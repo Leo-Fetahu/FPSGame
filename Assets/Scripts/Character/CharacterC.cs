@@ -82,13 +82,6 @@ public class CharacterC : MonoBehaviour
 
     public HealthBar healthBar;
 
-    void Start()
-    {
-        currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
-    }
-
-
     #region - Awake -
 
     private void Awake()

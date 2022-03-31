@@ -23,6 +23,7 @@ public class EnemyDamage : MonoBehaviour
         {
             animator.SetTrigger("Death");
             GetComponent<CapsuleCollider>().enabled = false;
+            GetComponent<Rigidbody>().isKinematic = true;
         } 
         else
         {

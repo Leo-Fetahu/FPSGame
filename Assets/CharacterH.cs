@@ -5,21 +5,21 @@ using UnityEngine;
 
 public class CharacterH : MonoBehaviour
 {
-    public float health = 100f;
+    public float maxHealth = 100f;
     public GameObject DeathUI;
     public GameObject HealthUI;
     public GameObject Player;
 
     public void TakeDamage(float amount)
     {
-        health -= amount;
-        if (health <= 0f)
+        maxHealth -= amount;
+        if (maxHealth <= 0f)
         {
             Die();
         }
-        if (health <= 0f)
+        if (maxHealth <= 0f)
         {
-            health = 0f;
+            maxHealth = 0f;
         }
     }
 
