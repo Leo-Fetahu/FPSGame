@@ -8728,7 +8728,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51c11078fb9722b42a39e3981f008f5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHP: 100
+  enemyHP: 200
   projectile: {fileID: 6262635327644089573, guid: ec90314a5653a364b92361f4c87a321c, type: 3}
   projectilePoint: {fileID: 1000578000125144003}
   animator: {fileID: 7479497572544345887}

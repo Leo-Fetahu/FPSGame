@@ -25,6 +25,7 @@ public class CharacterH : MonoBehaviour
 
     public void Die()
     {
+        Destroy(gameObject);
         DeathUI.SetActive(true);
         HealthUI.SetActive(false);
         Player.SetActive(false);
