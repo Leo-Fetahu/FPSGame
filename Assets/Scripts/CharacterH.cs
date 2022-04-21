@@ -56,6 +56,7 @@ public class CharacterH : MonoBehaviour
         }
     }
 
+
     public void Die()
     {
         Destroy(gameObject);
