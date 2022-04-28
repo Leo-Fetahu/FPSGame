@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class EnemyDamage : MonoBehaviour
 {
+    killCounter killCounterScript;
+
     public int enemyHP = 100;
     public GameObject projectile;
     public Transform projectilePoint;
+
+    private void Start()
+    {
+        killCounterScript = GameObject.Find("KCO").GetComponent<killCounter>();
+    }
 
     public void Attack()
     {
@@ -22,6 +29,7 @@ public class EnemyDamage : MonoBehaviour
         if (enemyHP <= 0)
         {
             animator.SetTrigger("Death");
+            killCounterScript.AddKill();
             GetComponent<CapsuleCollider>().enabled = false;
             GetComponent<Rigidbody>().isKinematic = true;
             
