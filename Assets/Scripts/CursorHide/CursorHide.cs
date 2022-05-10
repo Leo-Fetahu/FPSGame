@@ -9,5 +9,6 @@ public class CursorHide : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked; // Cursor is now locked to screen
     }
-        
+   
+
 }
