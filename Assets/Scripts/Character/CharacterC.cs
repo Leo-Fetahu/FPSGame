@@ -250,7 +250,11 @@ public class CharacterC : MonoBehaviour
         movementSpeed.y += playerGravity;
         movementSpeed += jumpingForce * Time.deltaTime;
 
-        characterController.Move(movementSpeed);
+
+        if (PauseMenu.GameIsPaused == false)
+        {
+            characterController.Move(movementSpeed);
+        }
     }
 
     #endregion
