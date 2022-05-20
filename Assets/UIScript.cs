@@ -19,9 +19,9 @@ public class UIScript : MonoBehaviour
 
     IEnumerator GameEnd()
     {
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(16);
         Canvas.SetBool("Fade", true);
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(5);
         SceneManager.LoadScene("Home");
     }
 
